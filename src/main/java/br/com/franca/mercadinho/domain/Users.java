@@ -4,10 +4,8 @@ import br.com.franca.mercadinho.domain.enums.Role;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,7 +14,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -25,30 +22,40 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 @Entity
+@Table(name = "users")
 public class Users implements UserDetails, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
+    @Column(name = "name")
     private String name;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @Column(name = "date_birth")
     private LocalDate dateBirth;
 
+    @Column(name = "email")
     private String email;
 
+    @Column(name = "cpf")
     private String cpf;
 
+    @Column(name = "address")
     private String address;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Column(name = "password")
     private String password;
 
+    @Column(name = "role")
     private Role role;
 
     @CreationTimestamp
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @Column(name = "creation_date")
     private LocalDateTime creationDate;
 
     @OneToMany(mappedBy = "users")
@@ -56,7 +63,7 @@ public class Users implements UserDetails, Serializable {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
+        return Set.of(new SimpleGrantedAuthority(role.name()));
     }
 
     @Override
