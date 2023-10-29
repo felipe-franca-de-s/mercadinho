@@ -19,7 +19,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserDto {
+public class UsersDto {
 
     private Integer id;
 
@@ -48,17 +48,17 @@ public class UserDto {
 
     private Set<Product> products;
 
-    public static Users convertEntity(UserDto userDto) {
+    public static Users convertEntity(UsersDto usersDto) {
         return Users.builder()
-                .id(userDto.getId())
-                .name(userDto.getName())
-                .dateBirth(userDto.getDateBirth())
-                .email(userDto.getEmail())
-                .cpf(userDto.getCpf())
-                .address(userDto.getAddress())
-                .password(userDto.getPassword())
-                .role(Role.convertRoleStringToRole(userDto.getRole()))
-                .products(userDto.getProducts())
+                .id(usersDto.getId())
+                .name(usersDto.getName())
+                .dateBirth(usersDto.getDateBirth())
+                .email(usersDto.getEmail())
+                .cpf(usersDto.getCpf())
+                .address(usersDto.getAddress())
+                .password(usersDto.getPassword())
+                .role(Role.convertRoleStringToRole(usersDto.getRole()))
+                .products(usersDto.getProducts())
                 .build();
     }
 }
