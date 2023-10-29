@@ -6,11 +6,11 @@ import java.util.Set;
 
 public interface ProductService {
 
-    ProductDto create(ProductDto productDto);
-
-    ProductDto update(Long id, ProductDto productDto);
-
     Set<ProductDto> findAll();
 
-    ProductDto findById(Long id);
+    ProductDto findById(Integer id);
+
+    ProductDto create(ProductDto productDto);
+
+    ProductDto updateById(Integer id, ProductDto productDto);
 }

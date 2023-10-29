@@ -15,22 +15,23 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 
     @Override
-    public ProductDto create(ProductDto productDto) {
-        return null;
-    }
-
-    @Override
-    public ProductDto update(Long id, ProductDto productDto) {
-        return null;
-    }
-
-    @Override
     public Set<ProductDto> findAll() {
         return null;
     }
 
     @Override
-    public ProductDto findById(Long id) {
+    public ProductDto findById(Integer id) {
         return null;
     }
+
+    @Override
+    public ProductDto create(ProductDto productDto) {
+        return null;
+    }
+
+    @Override
+    public ProductDto updateById(Integer id, ProductDto productDto) {
+        return null;
+    }
+
 }

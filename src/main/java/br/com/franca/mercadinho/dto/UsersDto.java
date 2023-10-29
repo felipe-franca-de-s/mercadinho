@@ -61,4 +61,18 @@ public class UsersDto {
                 .products(usersDto.getProducts())
                 .build();
     }
+
+    public static UsersDto convertDto(Users users) {
+        return UsersDto.builder()
+                .id(users.getId())
+                .name(users.getName())
+                .dateBirth(users.getDateBirth())
+                .email(users.getEmail())
+                .cpf(users.getCpf())
+                .address(users.getAddress())
+                .password(users.getPassword())
+                .role(users.getRole().name())
+                .products(users.getProducts())
+                .build();
+    }
 }

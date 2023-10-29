@@ -8,11 +8,11 @@ import java.util.Set;
 @Service
 public interface UsersService {
 
-    UsersDto create(UsersDto usersDto);
-
-    UsersDto update(Long id, UsersDto usersDto);
-
     Set<UsersDto> findAll();
 
-    UsersDto findById(Long id);
+    UsersDto findById(Integer id);
+
+    UsersDto create(UsersDto usersDto);
+
+    UsersDto updateById(Integer id, UsersDto usersDto);
 }

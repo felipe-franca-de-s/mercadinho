@@ -7,6 +7,8 @@ import br.com.franca.mercadinho.service.UsersService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -16,6 +18,17 @@ public class UsersServiceImpl implements UsersService {
     private UsersRepository usersRepository;
 
     @Override
+    public Set<UsersDto> findAll() {
+        List<Users> usersListRaw = usersRepository.findAll();
+        return new LinkedHashSet<>(usersListRaw.stream().map(UsersDto::convertDto).toList());
+    }
+
+    @Override
+    public UsersDto findById(Integer id) {
+        return UsersDto.convertDto(this.findEntityById(id));
+    }
+
+    @Override
     public UsersDto create(UsersDto usersDto) {
         Users users = UsersDto.convertEntity(usersDto);
         usersRepository.save(users);
@@ -23,17 +36,21 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public UsersDto update(Long id, UsersDto usersDto) {
-        return null;
+    public UsersDto updateById(Integer id, UsersDto usersDto) {
+        Users users = findEntityById(id);
+        usersDto.setId(users.getId());
+        return usersDto;
     }
 
-    @Override
-    public Set<UsersDto> findAll() {
-        return null;
+    private Users findEntityById(Integer id) {
+        this.existsById(id);
+        return usersRepository.findById(id).orElseThrow();
     }
 
-    @Override
-    public UsersDto findById(Long id) {
-        return null;
+    private void existsById(Integer id) {
+        if (!usersRepository.existsById(id)) {
+            throw new RuntimeException(String.format(
+                    "Not found [%s] by id '%d'.", this.getClass().getSimpleName(), id));
+        }
     }
 }
