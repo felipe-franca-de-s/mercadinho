@@ -48,7 +48,3 @@ spring:
       path: /api-docs
     swagger-ui:
       path: /swagger-ui.html
-
-  web:
-    resources:
-      static-locations: classpath:/public/

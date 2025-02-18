@@ -2,7 +2,7 @@ package br.com.franca.mercadinho.domain.enums;
 
 public enum Role {
 
-    ADMIN, NORMAL;
+    ADMIN, USER;
 
     public static Role convertRoleStringToRole(String roleString) {
         for (Role roleFor : Role.values()) {
@@ -10,6 +10,6 @@ public enum Role {
                 return roleFor;
             }
         }
-        return Role.NORMAL;
+        return Role.USER;
     }
 }

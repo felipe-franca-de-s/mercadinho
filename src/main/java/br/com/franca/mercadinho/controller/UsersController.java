@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class UsersController {
 
-    private UsersService usersService;
+    private UsersService service;
 
     @GetMapping
     public ResponseEntity<?> findAll() {
         try {
-            return ResponseEntity.ok(usersService.findAll());
+            return ResponseEntity.ok(service.findAll());
         } catch (RuntimeException e) {
             log.error(e.getMessage());
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -28,7 +28,7 @@ public class UsersController {
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable Integer id) {
         try {
-            return ResponseEntity.ok(usersService.findById(id));
+            return ResponseEntity.ok(service.findById(id));
         } catch (RuntimeException e) {
             log.error(e.getMessage());
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -38,7 +38,7 @@ public class UsersController {
     @PostMapping
     public ResponseEntity<?> save(@RequestBody UsersDto usersDto) {
         try {
-            return ResponseEntity.status(201).body(usersService.create(usersDto));
+            return ResponseEntity.status(201).body(service.create(usersDto));
         } catch (RuntimeException e) {
             log.error(e.getMessage());
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -48,7 +48,7 @@ public class UsersController {
     @PutMapping("/{id}")
     public ResponseEntity<?> updateById (@PathVariable Integer id, @RequestBody UsersDto usersDto) {
         try {
-            return ResponseEntity.status(201).body(usersService.updateById(id, usersDto));
+            return ResponseEntity.status(201).body(service.updateById(id, usersDto));
         } catch (RuntimeException e) {
             log.error(e.getMessage());
             return ResponseEntity.badRequest().body(e.getMessage());
