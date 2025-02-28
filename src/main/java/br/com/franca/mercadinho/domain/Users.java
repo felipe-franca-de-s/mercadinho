@@ -1,19 +1,24 @@
 package br.com.franca.mercadinho.domain;
 
-import br.com.franca.mercadinho.domain.enums.Role;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
-//import org.springframework.security.core.GrantedAuthority;
-//import org.springframework.security.core.authority.SimpleGrantedAuthority;
-//import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.Set;
 
 @Getter
@@ -31,6 +36,7 @@ public class Users implements /*UserDetails*/ Serializable {
     private Integer id;
 
     @Column(name = "name")
+    @NotBlank
     private String name;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
@@ -38,20 +44,22 @@ public class Users implements /*UserDetails*/ Serializable {
     private LocalDate dateBirth;
 
     @Column(name = "email")
+    @NotBlank
     private String email;
 
     @Column(name = "cpf")
+    @NotBlank
     private String cpf;
 
     @Column(name = "address")
     private String address;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @Column(name = "password")
-    private String password;
-
-    @Column(name = "role")
-    private Role role;
+//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//    @Column(name = "password")
+//    private String password;
+//
+//    @Column(name = "role")
+//    private Role role;
 
     @CreationTimestamp
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")

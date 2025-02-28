@@ -36,13 +36,14 @@ public class UsersController {
     }
 
     @PostMapping
-    public ResponseEntity<?> save(@RequestBody UsersDto usersDto) {
+    public ResponseEntity<UsersDto> save(@RequestBody UsersDto usersDto) {
         try {
             return ResponseEntity.status(201).body(service.create(usersDto));
         } catch (RuntimeException e) {
             log.error(e.getMessage());
-            return ResponseEntity.badRequest().body(e.getMessage());
+//            return ResponseEntity.badRequest().body(e.getMessage());
         }
+        return ResponseEntity.badRequest().body(new UsersDto());
     }
 
     @PutMapping("/{id}")

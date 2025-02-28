@@ -2,12 +2,15 @@ package br.com.franca.mercadinho.dto;
 
 import br.com.franca.mercadinho.domain.Product;
 import br.com.franca.mercadinho.domain.Users;
-import br.com.franca.mercadinho.domain.enums.Role;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
@@ -56,8 +59,8 @@ public class UsersDto {
                 .email(usersDto.getEmail())
                 .cpf(usersDto.getCpf())
                 .address(usersDto.getAddress())
-                .password(usersDto.getPassword())
-                .role(Role.convertRoleStringToRole(usersDto.getRole()))
+//                .password(usersDto.getPassword())
+//                .role(Role.convertRoleStringToRole(usersDto.getRole()))
                 .products(usersDto.getProducts())
                 .build();
     }
@@ -70,8 +73,8 @@ public class UsersDto {
                 .email(users.getEmail())
                 .cpf(users.getCpf())
                 .address(users.getAddress())
-                .password(users.getPassword())
-                .role(users.getRole().name())
+//                .password(users.getPassword())
+//                .role(users.getRole().name())
                 .products(users.getProducts())
                 .build();
     }
